@@ -9,7 +9,7 @@ error()
   echo -ne "${RED}Error: $@${NC}\n" >&2
 }
 
-ctrl_c() 
+cancel() 
 {
   echo -ne "\nCancelled.\n"
   exit 0
@@ -31,10 +31,14 @@ to_continue()
   esac
 }
 
+check()
+{
+  awk "/^$username/" /etc/shadow
+}
+
 input_user()
 {
-  printf "Enter the user name: "
-  read username
+  read -p "Enter the user name: " username
   if ! id "$username" >/dev/null 2>&1; then
     error "this user doesn't exist"
     return 1
@@ -49,10 +53,10 @@ menu()
 Options:
 1) Lock - lock the password of the named account
 2) Unlock - unlock the password of the named account
-3) Exit - exit the programm
+3) Check - check the password state
+4) Exit - exit the programm
   "
-  printf "Select the option: "
-    read answer
+  read -p "Select the option: " answer
     case "$answer" in
       "1")
         echo "Locking the password..."
@@ -63,6 +67,9 @@ Options:
         passwd "$username" -u
         ;;
       "3")
+         check
+         ;;  
+      "4")
         echo "Bye."
         exit 0
         ;;
@@ -71,7 +78,7 @@ Options:
     esac
 }
 
-trap ctrl_c INT
+trap cancel INT
 
 echo "
 Password Management
