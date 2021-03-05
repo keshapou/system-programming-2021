@@ -31,7 +31,7 @@ to_continue()
   esac
 }
 
-check()
+check_pass()
 {
   awk "/^$username/" /etc/shadow
 }
@@ -57,25 +57,25 @@ Options:
 4) Exit - exit the programm
   "
   read -p "Select the option: " answer
-    case "$answer" in
-      "1")
-        echo "Locking the password..."
-        passwd "$username" -l
-        ;;
-      "2")
-        echo "Unlocking the password..."
-        passwd "$username" -u
-        ;;
-      "3")
-         check
-         ;;  
-      "4")
-        echo "Bye."
-        exit 0
-        ;;
-      *)
-        error "invalid option."
-    esac
+  case "$answer" in
+    "1")
+      echo "Locking the password..."
+      passwd "$username" -l
+      ;;
+    "2")
+      echo "Unlocking the password..."
+      passwd "$username" -u
+      ;;
+    "3")
+        check_pass
+        ;;  
+    "4")
+      echo "Bye."
+      exit 0
+      ;;
+    *)
+      error "invalid option."
+  esac
 }
 
 trap cancel INT
