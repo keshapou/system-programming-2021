@@ -1,8 +1,6 @@
 FROM alpine
 COPY ./01sp19.sh .
 
-RUN apk update
-
 RUN adduser -S kesha -s /bin/sh
 RUN echo "kesha:kesha" | chpasswd
 
