@@ -67,8 +67,8 @@ Options:
       passwd "$username" -u
       ;;
     "3")
-        check_pass
-        ;;  
+      check_pass
+      ;;  
     "4")
       echo "Bye."
       exit 0
