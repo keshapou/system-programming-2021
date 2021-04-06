@@ -91,8 +91,6 @@ void fill(int array[], int array1[], int array2[], size_t size)
         [array1]"m"(array1), [array2]"m"(array2), [array]"d"(array)
         :"%ecx", "%ebx"
     );
-
-    int* end_array = &array[2*size - 1];
 }
 
 void print_array(const int a[], size_t size)
