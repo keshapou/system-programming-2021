@@ -21,8 +21,6 @@ int main()
     fill(array2, size);
     fill(array, array1, array2, size);
 
-    int* end_array = &array[2*size-1];
-
     print_array(array1, size);
     print_array(array2, size);
     print_array(array, 2*size);
