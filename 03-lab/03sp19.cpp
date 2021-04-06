@@ -38,8 +38,7 @@ void fill(int a[], size_t size)
 {
     for (size_t i = 0; i < size; ++i)
     {
-        int r = std::rand() % 100 + 1;
-        a[i] = r;
+        a[i] = std::rand() % 100 + 1;
     }
 }
 
