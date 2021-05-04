@@ -86,7 +86,6 @@ void multiply_thread(Matrix& res, size_t ith, const Matrix& m1, const Matrix& m2
 
     for (size_t i = 0; i < cols1; ++i)
     {
-        double sum = 0;
         for (size_t j = 0; j < rows2; ++j)
         {
             res[ith][i] += m1[ith][j] * m2[j][i];
